@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         'custom-purple': '#581c87',  // You can name this whatever you want
-        'custon-dark-purple': '#4a044e',
+        'custom-dark-purple': '#4a044e',
       }
     },
   },
