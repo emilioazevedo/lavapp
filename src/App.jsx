@@ -8,7 +8,7 @@ function App() {
         <img src={reactLogo} className="logo react" alt="React logo" />
 
         <h1 className="text-2xl font-bold">LAV APP</h1> 
-     <h2>BTC Buy and Sell Signals Hello from Amplify</h2>
+     <h2>BTC Buy and Sell Signals </h2>
       </header>
     </div>
   );
