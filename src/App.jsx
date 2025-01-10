@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App h-screen bg-gradient-to-r from-custom-purple to-custom-dark-purple">
+    <div className="w-full h-screen bg-gradient-to-r from-custom-purple to-custom-dark-purple">
       <header className="p-4 bg-blue-500 text-white">
         <img src={reactLogo} className="logo react" alt="React logo" />
 
