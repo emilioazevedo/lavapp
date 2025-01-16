@@ -1,0 +1,12 @@
+import React from 'react';
+
+function Settings() {
+  return (
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-4">Settings</h2>
+      {/* Add settings options here (e.g., risk tolerance, notification preferences) */}
+    </div>
+  );
+}
+
+export default Settings;

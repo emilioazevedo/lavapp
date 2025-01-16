@@ -1,0 +1,34 @@
+/* Modal.css */
+.modal-overlay {
+    /* Position and size */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; 
+    
+    /* Background and visibility */
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 9999; 
+  
+    /* Centering */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    /* Background and shadows */
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  
+    /* Sizing and overflow */
+    max-width: 600px;
+    width: 90%;
+    padding: 2rem;
+    overflow: auto; /* Allow scrolling if content exceeds height */
+  
+    /* Z-index to place above overlay */
+    z-index: 10000; 
+  }
