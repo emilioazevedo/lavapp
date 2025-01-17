@@ -6,7 +6,7 @@ import VideoPlayer from "./components/VideoPlayer";
 import CryptoInfo from './components/CryptoInfo';
 import CryptoStats from './components/CryptoStats';
 import Modal from './components/Modal'; 
-import './Components/Modal.css';
+import './components/Modal.css';
 
 
 // Define cryptoData outside the component
