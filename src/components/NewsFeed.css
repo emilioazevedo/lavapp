@@ -1,4 +1,14 @@
 .text-stroke {
-  -webkit-text-stroke: 1px rgb(166, 20, 163);
+  -webkit-text-stroke: 0px rgb(166, 20, 163);
   color: transparent; /* Ensure the stroke is visible outside the letters */
+}
+
+/* Add responsive styles */
+@media (max-width: 640px) {
+  .w-full {
+    width: 100%;
+  }
+  .sm\:w-[80%] {
+    width: 100%;
+  }
 }
