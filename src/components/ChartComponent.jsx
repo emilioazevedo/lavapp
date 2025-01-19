@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Chart as ChartJS, TimeScale } from 'chart.js';
+import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import 'chartjs-adapter-moment';
 import SignalComponent from './SignalComponent';
@@ -58,81 +58,63 @@ function ChartComponent() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    let chart = null;
-    
-    if (chartData.labels.length > 0) {
-      const ctx = document.getElementById('myChart');
-      if (ctx) {
-        chart = new ChartJS(ctx, {
-            type: 'line',
-            data: chartData,
-            options: {
-              responsive: true,
-              maintainAspectRatio: true,
-              aspectRatio: 0,
-              scales: {
-                x: {
-                  type: 'time',
-                  time: {
-                    unit: 'day'
-                  },
-                  title: {
-                    display: true,
-                    text: 'Date',
-                    color: 'white'  // Added title color
-                  },
-                  ticks: {
-                    color: 'white'  // Added ticks color
-                  },
-                  grid: {
-                    color: 'rgba(255, 255, 255, 0.1)'  // Lighter grid lines
-                  }
-                },
-                y: {
-                  title: {
-                    display: true,
-                    text: 'Price (USD)',
-                    color: 'white'  // Added title color
-                  },
-                  ticks: {
-                    color: 'white',  // Added ticks color
-                    callback: function(value) {
-                      return '$' + value.toLocaleString();
-                    }
-                  },
-                  grid: {
-                    color: 'rgba(255, 255, 255, 0.1)'  // Lighter grid lines
-                  }
-                }
-              },
-              plugins: {
-                tooltip: {
-                  callbacks: {
-                    label: function(context) {
-                      return '$' + context.parsed.y.toLocaleString();
-                    }
-                  }
-                },
-                legend: {
-                  labels: {
-                    color: 'white'  // Added legend color
-                  }
-                }
-              }
-            }
-          });      }
-    }
-
-    return () => {
-      if (chart) {
-        chart.destroy();
+  const options = {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 0,
+    scales: {
+      x: {
+        type: 'time',
+        time: {
+          unit: 'day'
+        },
+        title: {
+          display: true,
+          text: 'Date',
+          color: 'white'  // Added title color
+        },
+        ticks: {
+          color: 'white'  // Added ticks color
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)'  // Lighter grid lines
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Price (USD)',
+          color: 'white'  // Added title color
+        },
+        ticks: {
+          color: 'white',  // Added ticks color
+          callback: function(value) {
+            return '$' + value.toLocaleString();
+          }
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)'  // Lighter grid lines
+        }
       }
-    };
-  }, [chartData]);
+    },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return '$' + context.parsed.y.toLocaleString();
+          }
+        }
+      },
+      legend: {
+        labels: {
+          color: 'white'  // Added legend color
+        }
+      }
+    }
+  };
 
   return (
-    <div className="w-[1000px] px-0 h-[100%] mb-16">
+    <div className="w-[100%] px-0 h-[100%] mb-16">
       <h2 className="text-2xl font-bold mb-4">Bitcoin Price Chart</h2>
       {isLoading ? (
         <p>Loading data...</p>
@@ -140,8 +122,8 @@ function ChartComponent() {
         <p className="text-red-500">Error fetching data: {error.message}</p>
       ) : (
         <>
-          <div className="w-full h-full">
-            <canvas id="myChart" className="w-full" />
+          <div className="chart-container">
+            <Line data={chartData} options={options} />
           </div>
           {chartData.datasets[0] && ( // Added check here
             <SignalComponent priceData={chartData.datasets[0].data} />

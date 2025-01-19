@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { cacheService } from '../utils/cache';
+import './NewsFeed.css'; // Import the CSS file
 
 function NewsFeed({ onArticleClick }) { 
   const [articles, setArticles] = useState([]);
@@ -53,19 +54,19 @@ function NewsFeed({ onArticleClick }) {
   }
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text sticky top-0 bg-black/20 backdrop-blur-sm">
+    <div className="p-4 h-screen overflow-y-scroll relative">
+      <h2 className="text-xl font-bold mt-0 mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text sticky top-0 bg-[#581c87] z-50 pt-0 text-stroke">
         Crypto News
       </h2>
       <div className="space-y-4">
         {articles.map((article, index) => (
           <div
             key={index}
-            className="w-[80%] mx-auto border-t-2 border-t-purple-500 rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow duration-200 bg-[#401b63] backdrop-blur-sm cursor-pointer"
+            className="w-full sm:w-[80%] mx-auto border-t-2 border-t-purple-500 rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow duration-200 bg-[#401b63] backdrop-blur-sm cursor-pointer"
             onClick={() => onArticleClick(article)} 
           >
             {article.image_url && (
-              <div className="h-16 mb-2">
+              <div className="h-32 sm:h-16 mb-2">
                 <img
                   src={article.image_url}
                   alt={article.title}

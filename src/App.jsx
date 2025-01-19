@@ -93,7 +93,9 @@ function App() {
           </header>
 
           <div className="flex justify-center w-full mb-8">
-            <ChartComponent />
+            <div className="w-full h-[100%] max-w-4xl">
+              <ChartComponent />
+            </div>
           </div>
 
           <div className="border-2 border-gray-500/70 rounded p-2 relative mb-8">
