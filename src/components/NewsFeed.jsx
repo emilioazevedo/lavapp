@@ -54,23 +54,24 @@ function NewsFeed({ onArticleClick }) {
   }
 
   return (
-    <div className="p-4 h-screen overflow-y-scroll relative">
-      <h2 className="text-xl font-bold mt-0 mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text sticky top-0 bg-[#581c87] z-50 pt-0 text-stroke">
+    <div className="p-4 relative">
+      <h2 className="text-xl font-bold mt-0 mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
         Crypto News
       </h2>
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {articles.map((article, index) => (
           <div
             key={index}
-            className="w-full sm:w-[80%] mx-auto border-t-2 border-t-purple-500 rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow duration-200 bg-[#401b63] backdrop-blur-sm cursor-pointer"
+            className="w-full border-t-2 border-t-purple-500 rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow duration-200 bg-[#401b63] backdrop-blur-sm cursor-pointer relative"
             onClick={() => onArticleClick(article)} 
           >
             {article.image_url && (
-              <div className="h-32 sm:h-16 mb-2">
+              <div className="h-32 sm:h-16 mb-2 relative">
+                <div className="absolute inset-0 bg-purple-500 rounded-md blur-lg"></div>
                 <img
                   src={article.image_url}
                   alt={article.title}
-                  className="w-full h-full object-cover rounded-md"
+                  className="w-full h-full object-cover rounded-md relative z-10"
                   onError={(e) => (e.target.style.display = "none")}
                 />
               </div>

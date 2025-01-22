@@ -46,41 +46,48 @@ const response = await fetch(
   }, []);
 
   return (
-    <div className="h-screen p-2 overflow-y-auto">
-      <h2 className="text-xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text sticky top-0 bg-black/20 backdrop-blur-sm">
+    <div className="p-4 relative mx-auto max-w-7xl min-h-[500px]">
+      <h2 className="text-xl font-bold mt-0 mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
         Crypto Videos
       </h2>
-
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : (
-        <div className="space-y-4">
-          {videos.map((video) => (
-            <div 
-              key={video.id.videoId} 
-              className="w-[70%] mx-auto bg-[purple]/60 backdrop-blur-sm rounded-lg overflow-hidden cursor-pointer" 
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {videos.map((video, index) => (
+            <div
+              key={index}
+              className="w-full border-t-2 border-t-purple-500 rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow duration-200 bg-[#401b63] backdrop-blur-sm cursor-pointer relative"
               onClick={() => onVideoClick(video)} 
-            > 
-              <div className="w-full h-100" style={{ position: 'relative' }}> 
+            >
+              <div className="h-64 sm:h-36 mb-2 relative">
+                <div className="absolute inset-0 bg-purple-500 rounded-md blur-lg"></div>
                 <iframe 
                   width="100%" 
-                  height="100" 
+                  height="150" 
                   src={`https://www.youtube.com/embed/${video.id.videoId}`} 
                   title={video.snippet.title} 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen 
-                  className="rounded-t-lg" 
-                  style={{ pointerEvents: 'none' }} // Corrected case
+                  className="relative z-10"
                 />
               </div>
-              <div className="p-2">
-                <h3 className="text-xs font-semibold line-clamp-2">
+              <h3 className="text-sm font-semibold mb-1 line-clamp-2">
+                <a
+                  href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[12px] hover:text-white text-white transition-colors duration-200"
+                >
                   {video.snippet.title}
-                </h3>
-              </div>
+                </a>
+              </h3>
+              <p className="text-[9px] text-white/60 line-clamp-2">
+                {video.snippet.description}
+              </p>
             </div>
           ))}
         </div>

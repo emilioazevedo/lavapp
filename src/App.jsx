@@ -78,14 +78,9 @@ function App() {
 
       {/* Content wrapper */}
       <div className="flex flex-col lg:flex-row lg:justify-between relative z-[1]">
-        {/* Left Side - News Feed */}
-        <aside className="w-full lg:w-[250px] lg:fixed lg:left-0 lg:h-screen overflow-y-auto custom-scrollbar shadow lg:shadow-none z-[1]">
-          <NewsFeed onArticleClick={toggleNewsModal} /> 
-        </aside>
-
-        {/* Center Content */}
-        <main className="flex-1 mx-auto px-4 lg:max-w-4xl lg:px-8 relative z-[1]" style={{ marginLeft: "auto", marginRight: "auto" }}>
+        <main className="flex-1 mx-auto px-4 lg:max-w-6xl lg:px-8 relative z-[1]" style={{ marginLeft: "auto", marginRight: "auto" }}>
           <header className="text-center p-4">
+            <img src="./lav-app-logo.png" alt="" className="mx-auto" />
             <h1 className="text-2xl font-bold">LAV APP</h1>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
               BTC Buy and Sell Signals
@@ -93,25 +88,46 @@ function App() {
           </header>
 
           <div className="flex justify-center w-full mb-8">
-            <div className="w-full h-[100%] max-w-4xl">
-              <ChartComponent />
+            <div className="w-full h-[100%] max-w-6xl">
+              <ChartComponent style={{ height: "100%" }} />
             </div>
           </div>
+ 
+               {/* Background glow effect */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[590px] h-[800px] bg-gradient-to-r from-orange-500/20 via-green-800/40 to-purple-800 rounded-full blur-[90px]" />
+      </div>
 
-          <div className="border-2 border-gray-500/70 rounded p-2 relative mb-8">
+              {/* Background glow effect */}
+       <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute bottom-5 right-0 w-[390px] h-[200px] bg-purple-600/80 rounded-full blur-[90px]" />
+      </div>
+      <div className=" z-0 relative max-w-auto mx-auto">
+      <div className=" z-111 absolute -top-0.8 -left-0.8 w-64 h-64 bg-gradient-to-bl from-white/90 to-transparent rounded-tl-lg" />
+          <div className=" z-10 relative border-2 border-white/60  p-0 relative mb-8">
             <CryptoInfo data={cryptoData} />
           </div>
-
+          </div>
           <div className="border-2 border-gray-500/70 rounded p-2 relative mb-8">
             <CryptoStats data={cryptoPrices} />
           </div>
-        </main>
 
-        {/* Right Side - Video Player */}
-        <aside className="w-full lg:w-[250px] lg:fixed lg:right-0 lg:h-screen overflow-y-auto custom-scrollbar shadow lg:shadow-none z-[1]">
-          <VideoPlayer onVideoClick={toggleVideoModal} /> 
-        </aside>
+          {/* News Feed */}
+          <div className="w-full border-2 border-gray-500/70 bg-gradient-to-br from-purple-800 via-custom-dark-purple to-green-900 rounded p-2 relative mb-8">
+            <h2 className="text-2xl font-bold mb-4"></h2>
+            <NewsFeed onArticleClick={toggleNewsModal} /> 
+          </div>
+
+          {/* Video Player */}
+          <div className="w-full border-2 border-gray-500/70 bg-gradient-to-br from-purple-800 via-custom-dark-purple to-green-900 rounded p-2 relative mb-8">
+           
+            <VideoPlayer onVideoClick={toggleVideoModal} /> 
+          </div>
+        </main>
       </div>
+        
+      <div className="min-h-screen w-full relative z-[1]">
+
 
       {/* Render News Feed Modal */}
       {newsModalOpen && (
@@ -166,6 +182,7 @@ function App() {
       )}
 
     </div>
+  </div>
   );
 }
 
