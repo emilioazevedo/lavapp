@@ -8,7 +8,6 @@ import CryptoStats from './components/CryptoStats';
 import Modal from './components/Modal'; 
 import './components/Modal.css';
 
-
 // Define cryptoData outside the component
 const cryptoData = {
   coins: [{
@@ -80,7 +79,7 @@ function App() {
       <div className="flex flex-col lg:flex-row lg:justify-between relative z-[1]">
         <main className="flex-1 mx-auto px-4 lg:max-w-6xl lg:px-8 relative z-[1]" style={{ marginLeft: "auto", marginRight: "auto" }}>
           <header className="text-center p-4">
-            <img src="./lav-app-logo.png" alt="" className="mx-auto" />
+            <img src="/lav-app-logo.png" alt="LAV APP Logo" className="mx-auto" />
             <h1 className="text-2xl font-bold">LAV APP</h1>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
               BTC Buy and Sell Signals
