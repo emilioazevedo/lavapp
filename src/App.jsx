@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ChartComponent from "./components/ChartComponent";
 import "./App.css";
 import NewsFeed from "./components/NewsFeed";
@@ -7,6 +7,7 @@ import CryptoInfo from './components/CryptoInfo';
 import CryptoStats from './components/CryptoStats';
 import Modal from './components/Modal'; 
 import './components/Modal.css';
+import logo from './lav-app-logo.png'; // Import the logo
 
 // Define cryptoData outside the component
 const cryptoData = {
@@ -68,17 +69,49 @@ function App() {
     setVideoModalOpen(!videoModalOpen); 
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('bg-opacity-30');
+      } else {
+        nav.classList.remove('bg-opacity-30');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen w-full relative z-[1]">
+      {/* Menu */}
+      <nav className="bg-gradient-to-r from-purple-950 via-purple-800 to-purple-950 bg-opacity-90 p-4 fixed top-0 left-0 w-full z-50 transition-opacity duration-300">
+        <div className="container mx-auto flex justify-between items-center">
+          <div className="flex items-center">
+            <img src={logo} alt="LAV APP Logo" className="w-8 h-8 mr-2" />
+            <div className="text-white text-lg font-bold">LAV APP</div>
+          </div>
+          <ul className="flex space-x-4">
+            <li><a href="#chart" className="text-white hover:text-gray-300">Home</a></li>
+            <li><a href="#news" className="text-white hover:text-gray-300">News</a></li>
+            <li><a href="#videos" className="text-white hover:text-gray-300">Videos</a></li>
+            <li><a href="#stats" className="text-white hover:text-gray-300">Stats</a></li>
+            <li><a href="#info" className="text-white hover:text-gray-300">Crypto Info</a></li>
+          </ul>
+        </div>
+      </nav>
+
       {/* Background glow effect */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute top-20 left-1/3 w-[390px] h-[200px] bg-purple-600/80 rounded-full blur-[90px]" />
       </div>
 
       {/* Content wrapper */}
-      <div className="flex flex-col lg:flex-row lg:justify-between relative z-[1]">
+      <div className="flex flex-col lg:flex-row lg:justify-between relative z-[1] mt-16">
         <main className="flex-1 mx-auto px-4 lg:max-w-6xl lg:px-8 relative z-[1]" style={{ marginLeft: "auto", marginRight: "auto" }}>
           <header className="text-center p-4">
+            <div id="chart" className='mb-100px'></div>
             <img src="/lav-app-logo.png" alt="LAV APP Logo" className="mx-auto" />
             <h1 className="text-2xl font-bold">LAV APP</h1>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
@@ -92,41 +125,50 @@ function App() {
             </div>
           </div>
  
-               {/* Background glow effect */}
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[590px] h-[800px] bg-gradient-to-r from-orange-500/20 via-green-800/40 to-purple-800 rounded-full blur-[90px]" />
-      </div>
+          {/* Background glow effect */}
+          <div className="pointer-events-none absolute inset-0 z-0">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[590px] h-[800px] bg-gradient-to-br from-orange-500/20 via-green-800/40 to-purple-800 rounded-full blur-[90px]" />
+          </div>
 
-              {/* Background glow effect */}
-       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute bottom-5 right-0 w-[390px] h-[200px] bg-purple-600/80 rounded-full blur-[90px]" />
-      </div>
-      <div className=" z-0 relative max-w-auto mx-auto">
-      <div className=" z-111 absolute -top-0.8 -left-0.8 w-64 h-64 bg-gradient-to-bl from-white/90 to-transparent rounded-tl-lg" />
-          <div className=" z-10 relative border-2 border-white/60  p-0 relative mb-8">
-            <CryptoInfo data={cryptoData} />
+          {/* Background glow effect */}
+          <div className="pointer-events-none absolute inset-0 z-0">
+            <div className="absolute bottom-5 right-0 w-[390px] h-[200px] bg-purple-600/80 rounded-full blur-[90px]" />
           </div>
+          <div id="info" className='mt-100px'></div>
+          <div className="z-0 relative max-w-auto mx-auto">
+            <div className="z-111 absolute -top-0.8 -left-0.8 w-64 h-64 bg-gradient-to-bl from-white/90 to-transparent rounded-tl-lg" />
+            <div className="z-10 relative border-2 border-white/60 p-0 relative mb-8">
+              <CryptoInfo data={cryptoData} />
+            </div>
           </div>
-          <div className="border-2 border-gray-500/70 rounded p-2 relative mb-8">
+          <div className='m-100px' id="stats"></div>
+
+          <div className="border-2 border-gray-500/70 rounded p-2 relative mb-8 mt-[100px]">
             <CryptoStats data={cryptoPrices} />
           </div>
 
           {/* News Feed */}
-          <div className="w-full border-2 border-gray-500/70 bg-gradient-to-br from-purple-800 via-custom-dark-purple to-green-900 rounded p-2 relative mb-8">
-            <h2 className="text-2xl font-bold mb-4"></h2>
-            <NewsFeed onArticleClick={toggleNewsModal} /> 
+          <div id="news" className='mt-100px'></div>
+
+          <div className="w-full border-1 border-transparent bg-clip-border bg-gradient-to-br from-white/80 via-gray-800 to-gray-950 rounded p-0.5 relative mb-8 mt-[100px]">
+            <div className="w-full h-full bg-gradient-to-br from-purple-800 via-custom-dark-purple to-green-900 rounded p-2">
+              <h2 className="text-2xl font-bold mb-4"></h2>
+              <NewsFeed onArticleClick={toggleNewsModal} /> 
+            </div>
           </div>
 
           {/* Video Player */}
-          <div className="w-full border-2 border-gray-500/70 bg-gradient-to-br from-purple-800 via-custom-dark-purple to-green-900 rounded p-2 relative mb-8">
-           
-            <VideoPlayer onVideoClick={toggleVideoModal} /> 
+          <div id="videos" className='mt-100px'></div>
+
+          <div className="w-full border-1 border-transparent bg-clip-border bg-gradient-to-br from-white/80 via-gray-800 to-gray-950 rounded p-0.5 relative mb-8 mt-[100px]">
+            <div className="w-full h-full bg-gradient-to-br from-purple-800 via-custom-dark-purple to-green-900 rounded p-2">
+              <VideoPlayer onVideoClick={toggleVideoModal} /> 
+            </div>
           </div>
         </main>
       </div>
         
       <div className="min-h-screen w-full relative z-[1]">
-
 
       {/* Render News Feed Modal */}
       {newsModalOpen && (

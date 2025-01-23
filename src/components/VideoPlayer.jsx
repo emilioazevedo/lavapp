@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { cacheService } from '../utils/cache';
+import './VideoPlayer.css'; // Import the CSS file
 
 function VideoPlayer({ onVideoClick }) { 
   const [videos, setVideos] = useState([]);
@@ -59,7 +60,7 @@ const response = await fetch(
           {videos.map((video, index) => (
             <div
               key={index}
-              className="w-full border-t-2 border-t-purple-500 rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow duration-200 bg-[#401b63] backdrop-blur-sm cursor-pointer relative"
+              className="w-full border-t-2 border-t-purple-500 rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow duration-200 bg-[#401b63] backdrop-blur-sm cursor-pointer relative hover:animate-shake border-2 border-transparent bg-clip-border bg-gradient-to-r from-purple-950 via-purple-800 to-purple-950"
               onClick={() => onVideoClick(video)} 
             >
               <div className="h-64 sm:h-36 mb-2 relative">
