@@ -5,12 +5,12 @@ import 'chartjs-adapter-moment';
 import SignalComponent from './SignalComponent';
 
 function ChartComponent() {
-    const [chartData, setChartData] = useState({
-        labels: [],
-        datasets: [],
-      });
-      const [isLoading, setIsLoading] = useState(false);
-      const [error, setError] = useState(null);
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [],
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,8 +60,7 @@ function ChartComponent() {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 0,
+    maintainAspectRatio: false, // Set to false to allow custom height
     scales: {
       x: {
         type: 'time',
@@ -114,7 +113,7 @@ function ChartComponent() {
   };
 
   return (
-    <div className="w-[100%] px-0 h-[100%] mb-16">
+    <div className="w-[100%] px-0 h-[600px] mb-16">
       <h2 className="text-2xl font-bold mb-4">Bitcoin Price Chart</h2>
       {isLoading ? (
         <p>Loading data...</p>
@@ -122,7 +121,7 @@ function ChartComponent() {
         <p className="text-red-500">Error fetching data: {error.message}</p>
       ) : (
         <>
-          <div className="chart-container">
+          <div className="chart-container" style={{ height: '100%' }}> {/* Ensure the container has height */}
             <Line data={chartData} options={options} />
           </div>
           {chartData.datasets[0] && ( // Added check here
@@ -131,7 +130,7 @@ function ChartComponent() {
         </>
       )}
     </div>
-    
-);}
+  );
+}
 
 export default ChartComponent;

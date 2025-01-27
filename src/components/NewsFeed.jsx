@@ -62,7 +62,7 @@ function NewsFeed({ onArticleClick }) {
         {articles.map((article, index) => (
           <div
             key={index}
-            className="w-full border-t-2 border-t-purple-500 rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow duration-200 bg-[#401b63] backdrop-blur-sm cursor-pointer relative"
+            className="w-full border-t-2 border-t-purple-500 rounded-lg p-4 mb-4 hover:shadow-lg transition-shadow duration-200 bg-[#401b63] backdrop-blur-sm cursor-pointer relative hover:animate-shake"
             onClick={() => onArticleClick(article)} 
           >
             {article.image_url && (
