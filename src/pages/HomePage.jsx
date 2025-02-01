@@ -5,7 +5,7 @@ import VideoPlayer from "../components/VideoPlayer";
 import CryptoInfo from '../components/CryptoInfo';
 import CryptoStats from '../components/CryptoStats';
 
-function HomePage({ cryptoData, cryptoPrices, toggleNewsModal, toggleVideoModal }) {
+function HomePage({ cryptoPrices, toggleNewsModal, toggleVideoModal }) {
   return (
     <div className="flex flex-col items-center relative z-[1] mt-[-50] w-full"> {/* Added width */}
       <main className="flex-1 w-full max-w-6xl px-4 lg:px-8 relative z-[1] pb-[200px] min-h-[1200px]"> {/* Adjusted max-width */}
@@ -18,7 +18,7 @@ function HomePage({ cryptoData, cryptoPrices, toggleNewsModal, toggleVideoModal 
         <div className="flex flex-col items-center relative z-[30] mt-[140px]">
           <header className="text-center p-4">
             <div id="chart" className='mb-[-50px]'></div>
-            <img src="/lav-app-logo.png" alt="LAV APP Logo" className="mx-auto w-32 h-32 " /> {/* Adjusted size */}
+            <img src="/lav-app-logo1.png" alt="LAV APP Logo" className="mx-auto w-32 h-27 " /> {/* Adjusted size */}
             <h1 className="text-2xl font-bold">LAV APP</h1>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
               BTC Buy and Sell Signals
@@ -43,7 +43,7 @@ function HomePage({ cryptoData, cryptoPrices, toggleNewsModal, toggleVideoModal 
           <div id="info" className='mt-[100px]'></div>
           <div className="z-0 relative w-full max-w-6xl mx-auto"> {/* Adjusted max-width */}
             <div className="w-full border-1 border-transparent bg-clip-border bg-gradient-to-br from-white/80 via-gray-800 to-gray-950 rounded p-0.5 relative mb-8 mt-[100px]">
-              <CryptoInfo data={cryptoData} />
+              <CryptoInfo />
             </div>
           </div>
           <div className='mt-[-80px]'id="stats"></div>

@@ -3,31 +3,75 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Modal from './components/Modal'; 
 import About from './pages/About';
 import HomePage from './pages/HomePage';
-import logo from './lav-app-logo.png'; // Ensure the correct path to the logo
+import logo from './lav-app-logo1.png'; // Ensure the correct path to the logo
 
 // Define cryptoData outside the component
 const cryptoData = {
-  coins: [{
-    item: {
-      id: "max-2",
-      coin_id: 52378,
-      name: "MAX",
-      symbol: "MAX",
-      market_cap_rank: 623,
-      thumb: "https://assets.coingecko.com/coins/images/52378/standard/btc.png?1733257730",
-      data: {
-        price: 0.08821394763284982,
-        market_cap: "$88,241,463",
-        total_volume: "$5,832,230",
-        price_change_percentage_24h: {
-          usd: 1.953501326138397,
-        },
-        content: {
-          description: "Meet Max, the AI Agent with a passion for Bitcoin and a mission to revolutionize the financial world. Built on the cutting-edge @distilled_ai platform, Max is a staunch Bitcoin maximalist who believes in the transformative power of decentralized finance."
+  coins: [
+    {
+      item: {
+        id: "max-2",
+        coin_id: 52378,
+        name: "MAX",
+        symbol: "MAX",
+        market_cap_rank: 623,
+        thumb: "https://assets.coingecko.com/coins/images/52378/standard/btc.png?1733257730",
+        data: {
+          price: 0.08821394763284982,
+          market_cap: "$88,241,463",
+          total_volume: "$5,832,230",
+          price_change_percentage_24h: {
+            usd: 1.953501326138397,
+          },
+          content: {
+            description: "Meet Max, the AI Agent with a passion for Bitcoin and a mission to revolutionize the financial world. Built on the cutting-edge @distilled_ai platform, Max is a staunch Bitcoin maximalist who believes in the transformative power of decentralized finance."
+          }
+        }
+      }
+    },
+    {
+      item: {
+        id: "btc",
+        coin_id: 1,
+        name: "Bitcoin",
+        symbol: "BTC",
+        market_cap_rank: 1,
+        thumb: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
+        data: {
+          price: 45000,
+          market_cap: "$850,000,000,000",
+          total_volume: "$30,000,000,000",
+          price_change_percentage_24h: {
+            usd: -0.5,
+          },
+          content: {
+            description: "Bitcoin is a decentralized digital currency, without a central bank or single administrator, that can be sent from user to user on the peer-to-peer bitcoin network without the need for intermediaries."
+          }
+        }
+      }
+    },
+    {
+      item: {
+        id: "eth",
+        coin_id: 1027,
+        name: "Ethereum",
+        symbol: "ETH",
+        market_cap_rank: 2,
+        thumb: "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880",
+        data: {
+          price: 3000,
+          market_cap: "$350,000,000,000",
+          total_volume: "$20,000,000,000",
+          price_change_percentage_24h: {
+            usd: 2.3,
+          },
+          content: {
+            description: "Ethereum is a decentralized, open-source blockchain with smart contract functionality. Ether (ETH) is the native cryptocurrency of the platform."
+          }
         }
       }
     }
-  }]
+  ]
 };
 
 // Add crypto prices data
@@ -85,7 +129,7 @@ function App() {
         <nav className="bg-gradient-to-r from-purple-950 via-purple-800 to-purple-950 bg-opacity-90 p-4 fixed top-0 left-0 w-full z-50 transition-opacity duration-300 shadow-md">
           <div className="container mx-auto flex justify-between items-center">
             <div className="flex items-center">
-              <img src={logo} alt="LAV APP Logo" className="w-6 h-6 mr-2" /> {/* Adjusted size */}
+              <img src={logo} alt="LAV APP Logo" className="w-6 h-4 mr-2" /> {/* Adjusted size */}
               <div className="text-white text-lg font-bold">LAV APP</div>
             </div>
             <ul className="flex space-x-4">
@@ -160,7 +204,7 @@ function App() {
         {/* Footer */}
         <footer className="bg-gray-800 p-4 mt-8 w-full fixed bottom-0 left-0 z-50">
           <div className="container mx-auto flex justify-between items-center flex-wrap">
-            <img src={logo} alt="LAV APP Logo" className="w-6 h-6" /> {/* Adjusted size */}
+            <img src={logo} alt="LAV APP Logo" className="w-6 h-4" /> {/* Adjusted size */}
             <p className="text-white/90 text-center w-full md:w-auto">© 2023 LAV APP. All rights reserved.</p>
             <ul className="flex space-x-4">
               <li><Link to="/" className="text-white hover:text-gray-300">Home</Link></li>
