@@ -1,13 +1,16 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.use(
-    '/api',
+    '/api', // Proxy all requests starting with `/api`
     createProxyMiddleware({
       target: 'https://pro-api.coinmarketcap.com',
       changeOrigin: true,
       pathRewrite: {
-        '^/api': '',
+        '^/api': '', // Remove the `/api` prefix
+      },
+      headers: {
+        'X-CMC_PRO_API_KEY': process.env.VITE_COINMARKETCAP_API_KEY, // Add API key
       },
       onProxyReq: (proxyReq, req, res) => {
         console.log('Proxying request:', req.url);
@@ -15,8 +18,12 @@ module.exports = function(app) {
       },
       onProxyRes: (proxyRes, req, res) => {
         console.log('Received response from target:', proxyRes.statusCode);
+        let responseBody = '';
         proxyRes.on('data', (chunk) => {
-          console.log('Response chunk:', chunk.toString());
+          responseBody += chunk.toString();
+        });
+        proxyRes.on('end', () => {
+          console.log('Response body:', responseBody);
         });
       },
       onError: (err, req, res) => {
