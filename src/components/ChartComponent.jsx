@@ -12,23 +12,30 @@ function ChartComponent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const fetchWithRetry = async (url, retries = 3, delay = 1000) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        if (response.status === 429 && retries > 0) {
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          return fetchWithRetry(url, retries - 1, delay * 2);
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    } catch (error) {
+      throw error;
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       setError(null);
       try {
-        // Using CoinGecko API instead - 7 days of BTC data
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7&interval=daily'
-        );
+        const apiUrl = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7&interval=daily';
+        const data = await fetchWithRetry(apiUrl);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        // Format the data for the chart
         const formattedData = data.prices.map(([timestamp, price]) => ({
           x: new Date(timestamp),
           y: price

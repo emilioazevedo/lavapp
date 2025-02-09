@@ -4,6 +4,7 @@ import NewsFeed from "../components/NewsFeed";
 import VideoPlayer from "../components/VideoPlayer";
 import CryptoInfo from '../components/CryptoInfo';
 import CryptoStats from '../components/CryptoStats';
+import LatestTick from '../components/LatestTick'; // Import LatestTick
 
 function HomePage({ cryptoPrices, toggleNewsModal, toggleVideoModal }) {
   return (
@@ -52,9 +53,16 @@ function HomePage({ cryptoPrices, toggleNewsModal, toggleVideoModal }) {
             <CryptoStats data={cryptoPrices} />
           </div>
 
+          {/* Latest Tick */}
+          <div id="latest-tick" className='mt-[-50px] relative z-[40]'></div>
+          <div className="relative z-[40]">
+            <div className="w-full h-full p-2">
+              <LatestTick /> {/* Include LatestTick component */}
+            </div>
+          </div>
+
           {/* News Feed */}
           <div id="news" className='mt-[-50px]'></div>
-
           <div className="w-full border-1 border-transparent bg-clip-border bg-gradient-to-br from-white/80 via-gray-800 to-gray-950 rounded p-0.5 relative mb-8 mt-[80px]">
             <div className="w-full h-full bg-gradient-to-br from-purple-800 via-custom-dark-purple to-green-900 rounded p-2">
               <h2 className="text-2xl font-bold mb-4"></h2>
@@ -64,7 +72,6 @@ function HomePage({ cryptoPrices, toggleNewsModal, toggleVideoModal }) {
 
           {/* Video Player */}
           <div id="videos" className='mt-[-50px]'></div>
-
           <div className="w-full border-1 border-transparent bg-clip-border bg-gradient-to-br from-white/80 via-gray-800 to-gray-950 rounded p-0.5 relative mt-[70px] mb-[100px]"> {/* Added margin-bottom */}
             <div className="w-full h-full bg-gradient-to-br from-purple-800 via-custom-dark-purple to-green-900 rounded p-2">
               <VideoPlayer onVideoClick={toggleVideoModal} /> 

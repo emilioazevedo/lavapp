@@ -1,0 +1,38 @@
+.container {
+    padding: 10px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.grid-container {
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.section {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9em;
+    background-color: rgb(34, 33, 33); /* Add transparency */
+}
+
+.subtitle {
+    background-color: rgb(31, 30, 30); /* Add transparency */
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.data-point {
+    color: #b2b0b0;
+    font-size: 0.8em;
+}
